@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="assets/images/logo-16x16.png" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Feed-Page</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@1.9.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Styles -->
+    <link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/components.css" rel="stylesheet">
+    <link href="assets/css/media.css" rel="stylesheet">
+    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+</head>
+
+<body class="newsfeed">
+    <div class="container-fluid" id="wrapper">
+        <div class="row newsfeed-size">
+            <div class="col-md-12 newsfeed-right-side">
+                <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
+                    <ul class="navbar-nav mr-5" id="main_menu">
+                        <a class="navbar-brand nav-item mr-lg-5" href="index.html"><img
+                                src="assets/images/logo-64x64.png" width="40" height="40" class="mr-3" alt="Logo"></a>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <form class="w-30 mx-2 my-auto d-inline form-inline mr-5">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input w-75" id="searchInput"
+                                    placeholder="Search for people, companies, events and more..." aria-label="Search"
+                                    aria-describedby="search-addon">
+
+
+                                <!--Here 2 types for search button -->
+                                <!-- <div class="input-group-append">
+                                        <button class="btn search-button" type="button"><i
+                                                class='bx bx-search'></i></button>
+                                    </div>
+                                     -->
+                                <button type="button" class="btn btn-primary btn-sm"
+                                    onclick="searchUsers()">Search</button>
+
+
+
+                            </div>
+                        </form>
+                    </ul>
+                </nav>
+
+                <!-- HERE GH Delete the right nav bar -->
+                <div class="col-md-6 second-section" id="page-content-wrapper" style="margin: auto;padding-top: 10px;">
+                    <ul class="list-unstyled" style="margin-bottom: 0;">
+                        <li class="media post-form w-shadow">
+                            <div class="media-body">
+                                <div class="form-group post-input">
+                                    <textarea class="form-control" id="postForm" rows="2"
+                                        placeholder="What's on your mind, Ahmed ELghrabawy?"></textarea>
+                                </div>
+                                <div class="row post-form-group">
+                                    <div class="col-md-9">
+                                        <button type="button" class="btn btn-link post-form-btn btn-sm">
+                                            <i class='bx bx-images'></i> <span></span>
+                                        </button>
+                                        <button type="button" class="btn btn-link post-form-btn btn-sm">
+                                            <i class='bx bxs-group'></i> <span></span>
+                                        </button>
+                                        <button type="button" class="btn btn-link post-form-btn btn-sm">
+                                            <i class='bx bxs-map'></i> <span></span>
+                                        </button>
+                                    </div>
+
+
+
+                                    <div class="col-md-3 text-right">
+                                        <button type="button" class="btn btn-primary btn-sm">Publish</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Posts Sections Start From here -->
+                    <div class="posts-section mb-5">
+
+                    </div>
+
+
+
+
+                    <script src="assets/js/jquery/jquery-3.3.1.min.js"></script>
+                    <script src="assets/js/popper/popper.min.js"></script>
+                    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+
+
+
+
+                    <!--Posts Script Start From here GH -->
+                    <!-- Feed Page Script -->
+                    <script>
+                        function redirectToProfile(publisherName) {
+                            // Redirect to the profile page with the publisher's name
+                            window.location.href = `profile.html?publisher=${encodeURIComponent(publisherName)}`;
+                        }
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            fetch('assets/js/feed.json')
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Log the fetched data for debugging
+                                    console.log('Fetched data:', data);
+                                    // Display the JSON content in the HTML
+                                    displayPosts(data.posts.post);
+                                })
+                                .catch(error => {
+                                    console.error('Error reading the JSON file:', error);
+                                });
+
+                            function displayPosts(posts) {
+                                // Log the posts for debugging
+                                console.log('Displaying posts:', posts);
+
+                                var postsContainer = document.querySelector('.posts-section');
+
+                                posts.forEach(post => {
+                                    // Create post element
+                                    var postElement = document.createElement('div');
+                                    postElement.className = '555 border-bottom p-3 bg-white w-shadow';
+
+                                    // Create media div
+                                    var mediaDiv = document.createElement('div');
+                                    mediaDiv.className = 'media text-muted pt-3';
+
+                                    // Create user image
+                                    var userImage = document.createElement('img');
+                                    userImage.src = post.photo;
+                                    userImage.alt = 'Online user';
+                                    userImage.className = 'mr-3 post-user-image';
+
+                                    // Create media body
+                                    var mediaBody = document.createElement('div');
+                                    mediaBody.className = 'media-body pb-3 mb-0 small lh-125';
+
+                                    // Create user link
+                                    var userLink = document.createElement('a');
+                                    userLink.href = 'javascript:void(0)';
+                                    userLink.target = '_blank';
+                                    userLink.className = '1ext-gray-dark post-user-name';
+                                    userLink.textContent = post.Profile;
+                                    userLink.onclick = function () {
+                                        redirectToProfile(post.Profile);
+                                    };
+
+                                    // Create date span
+                                    var dateSpan = document.createElement('span');
+                                    dateSpan.className = 'd-block';
+                                    dateSpan.textContent = `${post.timestamp} `;
+
+                                    // Create globe icon
+                                    var globeIcon = document.createElement('i');
+                                    globeIcon.className = 'bx bx-globe ml-3';
+
+                                    // Append elements to the DOM
+                                    dateSpan.appendChild(globeIcon);
+                                    mediaBody.appendChild(userLink);
+                                    mediaBody.appendChild(dateSpan);
+                                    mediaDiv.appendChild(userImage);
+                                    mediaDiv.appendChild(mediaBody);
+                                    postElement.appendChild(mediaDiv);
+
+                                    // Create content div
+                                    var contentDiv = document.createElement('div');
+                                    contentDiv.className = 'mt-3';
+                                    var contentParagraph = document.createElement('p');
+                                    contentParagraph.textContent = post.Content;
+                                    contentDiv.appendChild(contentParagraph);
+                                    postElement.appendChild(contentDiv);
+
+                                    // Create image div
+                                    var imageDiv = document.createElement('div');
+                                    imageDiv.className = 'd-block mt-3';
+                                    // Uncomment the following line if you have an image URL in your JSON
+                                    var postImage = document.createElement('img');
+                                    postImage.src = post.photo;
+                                    postImage.className = 'post-content';
+                                    postImage.alt = 'post image';
+                                    imageDiv.appendChild(postImage);
+                                    postElement.appendChild(imageDiv);
+
+                                    // Create reactions div
+                                    var reactionsDiv = document.createElement('div');
+                                    reactionsDiv.className = 'mb-3 argon-reaction';
+
+                                    // Create like button span
+                                    var likeBtnSpan = document.createElement('span');
+                                    likeBtnSpan.className = 'like-btn';
+
+                                    // Create like button link
+                                    var likeBtnLink = document.createElement('a');
+                                    likeBtnLink.href = '#';
+                                    likeBtnLink.className = 'post-card-buttons';
+                                    likeBtnLink.id = 'reactions';
+                                    likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
+
+                                    // Create reactions ul
+                                    var reactionsUl = document.createElement('ul');
+                                    reactionsUl.className = 'reactions-box dropdown-shadow';
+
+                                    // Create reactions li elements
+                                    var reactions = ['Like', 'Love', 'HaHa', 'Wow', 'Sad', 'Angry'];
+
+                                    reactions.forEach(reaction => {
+                                        var reactionLi = document.createElement('li');
+                                        reactionLi.className = `reaction reaction-${reaction.toLowerCase()}`;
+                                        reactionLi.setAttribute('data-reaction', reaction);
+                                        reactionsUl.appendChild(reactionLi);
+                                    });
+
+                                    // Append elements to the DOM
+                                    likeBtnSpan.appendChild(likeBtnLink);
+                                    likeBtnSpan.appendChild(reactionsUl);
+                                    reactionsDiv.appendChild(likeBtnSpan);
+                                    postElement.appendChild(reactionsDiv);
+
+                                    // Append the post element to the container
+                                    postsContainer.appendChild(postElement);
+                                });
+                            }
+                        });
+                    </script>
+
+
+                    <script src="assets/js/components/components.js"></script>
+                    <!-- <script type="text/javascript">
+                        // Chart.js
+
+                        //  var likesChart = document.getElementById('likesChart').getContext('2d');
+                        var chart = new Chart(likesChart, {
+                            // The type of chart we want to create
+                            type: 'line',
+
+                            // The data for our dataset
+                            data: {
+                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                datasets: [{
+                                    label: 'Likes chart',
+                                    backgroundColor: 'rgb(0, 123, 255)',
+                                    borderColor: 'rgb(0, 123, 255)',
+                                    data: [0, 10, 5, 2, 20, 30, 45]
+                                }]
+                            },
+
+                            // Configuration options go here
+                            options: {}
+                        });
+
+                        var followersChart = document.getElementById('followersChart').getContext('2d');
+                        var myPieChart = new Chart(followersChart, {
+                            type: 'pie',
+                            data: {
+                                labels: [
+                                    'Followers',
+                                    'Following'
+                                ],
+                                datasets: [{
+                                    backgroundColor: ['rgb(0, 123, 255)', 'rgb(50,205,50)'],
+                                    data: [32, 17]
+                                }]
+                            },
+                            // Configuration options go here
+                            options: {}
+                        });
+
+                    </script> -->
+
+                    <!-- Search script start form here -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var postsContainer = document.querySelector('.posts-section');
+                            var allPosts; // Save the original posts data for resetting the view after a search
+
+                            // Fetch the JSON file
+                            fetch('assets/js/feed.json') // Replace 'path/to/your/json/file.json' with the actual path to your JSON file
+                                .then(response => response.json())
+                                .then(data => {
+                                    allPosts = data.posts.post; // Save the original posts data
+                                    displayPosts(allPosts);
+                                })
+                                .catch(error => {
+                                    console.error('Error reading the JSON file:', error);
+                                });
+
+                            function displayPosts(posts) {
+                                // Reset the container content before updating
+                                postsContainer.innerHTML = '';
+
+                                // Iterate through each post and create HTML elements to display the content
+                                posts.forEach(post => {
+                                    var postElement = document.createElement('div');
+                                    postElement.className = 'post border-bottom p-3 bg-white w-shadow';
+
+                                    postElement.innerHTML = `
+                <div class="media text-muted pt-3">
+                    <img src="${post.photo}" alt="Online user" class="mr-3 post-user-image">
+                    <div class="media-body pb-3 mb-0 small lh-125">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <a href="#" class="text-gray-dark post-user-name" onclick="redirectToProfile('${post.Profile}')">${post.Profile}</a>
+                        </div>
+                        <span class="d-block">${post.timestamp} <i class='bx bx-globe ml-3'></i></span>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p>${post.Content}</p>
+                </div>
+                <div class="d-block mt-3">
+                    <!-- Uncomment the following line if you have an image URL in your JSON -->
+                    <!-- <img src="${post.photo}" class="post-content" alt="post image"> -->
+                </div>
+                <div class="mb-3">
+                    <!-- Reactions -->
+                    <div class="argon-reaction">
+                        <span class="like-btn">
+                            <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-2'></i> ${post.likes}</a>
+                            <ul class="reactions-box dropdown-shadow">
+                                <li class="reaction reaction-like" data-reaction="Like"></li>
+                                <li class="reaction reaction-love" data-reaction="Love"></li>
+                                <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                                <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                                <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                                <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            `;
+
+                                    // Append the post element to the container
+                                    postsContainer.appendChild(postElement);
+                                });
+                            }
+
+                            // Function to search for users by profile name and redirect to profile page
+                            window.searchUsers = function () {
+                                var profileName = document.getElementById('searchInput').value.trim().toLowerCase();
+
+                                // Filter posts based on the entered profile name
+                                var filteredPosts = allPosts.filter(post => post.Profile.toLowerCase().includes(profileName));
+
+                                // Display the filtered posts
+                                displayPosts(filteredPosts);
+
+                                // Redirect to the first user's profile page (modify this logic based on your requirement)
+                                if (filteredPosts.length > 0) {
+                                    redirectToProfile(filteredPosts[0].Profile);
+                                }
+                            };
+
+                            // Function to redirect to a user's profile page
+                            function redirectToProfile(publisherName) {
+                                // Redirect to the profile page with the publisher's name
+                                window.location.href = `profile.html?publisher=${encodeURIComponent(publisherName)}`;
+                            }
+                        });
+                    </script>
+
+
+
+</body>
+
+</html>
