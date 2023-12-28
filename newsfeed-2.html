@@ -109,7 +109,7 @@
                         }
 
                         document.addEventListener('DOMContentLoaded', function () {
-                            fetch('assets/js/feed.json')
+                            fetch('https://json.almiraj.xyz/jsonfeed')
                                 .then(response => response.json())
                                 .then(data => {
                                     // Log the fetched data for debugging
@@ -287,7 +287,7 @@
                             var allPosts; // Save the original posts data for resetting the view after a search
 
                             // Fetch the JSON file
-                            fetch('assets/js/feed.json') // Replace 'path/to/your/json/file.json' with the actual path to your JSON file
+                            fetch('https://json.almiraj.xyz/jsonfeed') // Replace 'path/to/your/json/file.json' with the actual path to your JSON file
                                 .then(response => response.json())
                                 .then(data => {
                                     allPosts = data.Posts; // Save the original posts data
