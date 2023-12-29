@@ -25,10 +25,10 @@
         <div class="col-md-12 p-0">
             <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
                 <div class="w-100 justify-content-md-center">
-                    <ul class="nav navbar-nav enable-mobile px-2">
+                    <ul class="nav navbar-nav enable-mobile px-2 ">
                         <li class="nav-item">
-                            <button type="button" class="btn nav-link p-0"><img
-                                    src="assets/images/icons/theme/post-image.png" class="f-nav-icon"
+                            <button type="button" class="btn nav-link p-0">
+                                <img src="assets/images/icons/theme/post-image.png" class="f-nav-icon"
                                     alt="Quick make post"></button>
                         </li>
                         <li class="nav-item w-100 py-2">
@@ -38,13 +38,13 @@
                                         placeholder="Search for people, companies, events and more..."
                                         aria-label="Search" aria-describedby="search-addon">
                                     <div class="input-group-append">
-                                        <button class="btn search-button" type="button"><i
-                                                class='bx bx-search'></i></button>
+                                        <button class="btn search-button" type="button"><i class='bx bx-search'></i>
+                                        </button>
                                     </div>
+
                                 </div>
                             </form>
                         </li>
-
                     </ul>
                     <ul class="navbar-nav mr-5 flex-row" id="main_menu">
                         <a class="navbar-brand nav-item mr-lg-5" href="index.html"><img
@@ -61,6 +61,21 @@
                                 </div>
                             </div>
                         </form>
+                        <div>
+                            <button onclick="redirectToSignIn()"
+                                style="border-style:none;border-radius:0.25rem;margin-left:350px;margin-top:5px;color:white;background-color:#007bff;padding:10px;width:80px;font-size:13px;">Log
+                                out</button>
+                            <script>
+                                function redirectToSignIn() {
+                                    // Redirect to the sign-in page
+                                    window.location.href = 'sign-in.html';
+
+                                    // Clear the localStorage
+                                    localStorage.clear();
+                                }
+                            </script>
+                        </div>
+
             </nav>
             <div class="row profile-right-side-content">
                 <div class="user-profile">
@@ -174,7 +189,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -375,9 +389,13 @@
                     if (isLiked) {
                         // If already liked, dislike
                         post.likes--;
+                        likeBtnLink.style.color = ''; // Reset to the default color
+
                     } else {
                         // If not liked, like
                         post.likes++;
+                        likeBtnLink.style.color = 'blue'; // Set the color to blue or any desired color
+
                     }
                     // Update the UI
                     likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
