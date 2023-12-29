@@ -173,8 +173,6 @@
                     </div>
                 `;
 
-
-
                                                 // Append the post element to the container
                                                 profileCenter.appendChild(postElement);
                                             });
@@ -549,9 +547,12 @@
                                         if (isLiked) {
                                             // If already liked, dislike
                                             post.likes--;
+                                            likeBtnLink.style.color = '';
+
                                         } else {
                                             // If not liked, like
                                             post.likes++;
+                                            likeBtnLink.style.color = 'blue';
                                         }
                                         // Update the UI
                                         likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
@@ -737,9 +738,13 @@
                                         if (isLiked) {
                                             // If already liked, dislike
                                             post.likes--;
+                                            likeBtnLink.style.color = '';
+
                                         } else {
                                             // If not liked, like
                                             post.likes++;
+                                            likeBtnLink.style.color = 'blue';
+
                                         }
                                         // Update the UI
                                         likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
