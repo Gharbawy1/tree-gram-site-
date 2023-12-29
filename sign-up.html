@@ -152,6 +152,11 @@
                             alert('User already exists. Please sign in instead.');
                             return;
                         }
+                        else {
+                            localStorage.setItem('handel', handle);
+                            alert("User Added Sucsessfully Congrats! Welcome to our community");
+                            window.location.href = "index.html";
+                        }
                     })
                     .catch(error => {
                         console.error('Error reading the JSON file:', error);
