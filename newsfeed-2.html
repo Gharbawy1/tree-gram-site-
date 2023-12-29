@@ -29,8 +29,10 @@
                     <ul class="navbar-nav mr-5" id="main_menu">
                         <a class="navbar-brand nav-item mr-lg-5" href="sign-in.html"><img
                                 src="assets/images/logo-512x512.png" width="40" height="45" class="mr-3" alt="Logo">
-                            <p style="margin-top: 13px ;">Tr<span style="color: rgb(101, 173, 30);">E</span>eGr<span
-                                    style="color: rgb(101, 173, 30);">AM</span></p>
+                            <b>
+                                <p style="margin-top: 13px ;">Tr<span style="color: rgb(101, 173, 30);">E</span>eGr<span
+                                        style="color: rgb(101, 173, 30);">AM</span></p>
+                            </b>
                         </a>
 
                         <li class="nav-item s-nav">
@@ -402,6 +404,239 @@
                     </script>
 
 
+
+
+
+
+                    <script>
+                        function redirectToProfile(userProfile) {
+                            // Redirect to the profile page with the user's profile name
+                            window.location.href = `profile.html?publisher=${encodeURIComponent(userProfile)}`;
+                        }
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            fetch('https://json.almiraj.xyz/jsonfeed')
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Log the fetched data for debugging
+                                    console.log('Fetched data:', data);
+                                    // Display the JSON content in the HTML
+                                    displayPosts(data.Posts);
+                                })
+                                .catch(error => {
+                                    console.error('Error reading the JSON file:', error);
+                                });
+
+                            function displayPosts(posts) {
+                                // Log the posts for debugging
+                                console.log('Displaying posts:', posts);
+
+                                var postsContainer = document.querySelector('.posts-section');
+
+                                posts.forEach(post => {
+                                    // Create post element
+                                    var postElement = document.createElement('div');
+                                    postElement.className = '555 border-bottom p-3 bg-white w-shadow';
+
+                                    // Create media div
+                                    var mediaDiv = document.createElement('div');
+                                    mediaDiv.className = 'media text-muted pt-3';
+
+                                    // Create user image
+                                    var userImage = document.createElement('img');
+                                    userImage.src = post.Photo || 'path/to/default/image.jpg'; // Replace with the path to your default image
+                                    userImage.alt = 'Online user';
+                                    userImage.className = 'mr-3 post-user-image';
+
+                                    // Create media body
+                                    var mediaBody = document.createElement('div');
+                                    mediaBody.className = 'media-body pb-3 mb-0 small lh-125';
+
+                                    // Create user link
+                                    var userLink = document.createElement('a');
+                                    userLink.href = 'javascript:void(0)';
+                                    userLink.target = '_blank';
+                                    userLink.className = '1ext-gray-dark post-user-name';
+                                    userLink.textContent = post.User_Name;
+                                    userLink.onclick = function () {
+                                        redirectToProfile(post.Handle);
+                                    };
+
+                                    // Create date span
+                                    var dateSpan = document.createElement('span');
+                                    dateSpan.className = 'd-block';
+                                    dateSpan.textContent = `${post.Date} `;
+
+                                    // Create globe icon
+                                    var globeIcon = document.createElement('i');
+                                    globeIcon.className = 'bx bx-globe ml-3';
+
+                                    // Append elements to the DOM
+                                    dateSpan.appendChild(globeIcon);
+                                    mediaBody.appendChild(userLink);
+                                    mediaBody.appendChild(dateSpan);
+                                    mediaDiv.appendChild(userImage);
+                                    mediaDiv.appendChild(mediaBody);
+                                    postElement.appendChild(mediaDiv);
+
+                                    // Create content div
+                                    var contentDiv = document.createElement('div');
+                                    contentDiv.className = 'mt-3';
+                                    var contentParagraph = document.createElement('p');
+                                    contentParagraph.textContent = post.Content;
+                                    contentDiv.appendChild(contentParagraph);
+                                    postElement.appendChild(contentDiv);
+
+                                    // Create image div
+                                    var imageDiv = document.createElement('div');
+                                    imageDiv.className = 'd-block mt-3';
+                                    // Uncomment the following line if you have an image URL in your JSON
+                                    var postImage = document.createElement('img');
+                                    postImage.src = post.Photo || 'path/to/default/image.jpg'; // Replace with the path to your default image
+                                    postImage.className = 'post-content';
+                                    postImage.alt = 'post image';
+                                    imageDiv.appendChild(postImage);
+                                    postElement.appendChild(imageDiv);
+
+
+                                    // Create reactions div
+                                    var reactionsDiv = document.createElement('div');
+                                    reactionsDiv.className = 'mb-3 argon-reaction';
+
+                                    // Create like button span
+                                    var likeBtnSpan = document.createElement('span');
+                                    likeBtnSpan.className = 'like-btn';
+
+                                    // Create like button link
+                                    var likeBtnLink = document.createElement('a');
+                                    likeBtnLink.href = '#';
+                                    likeBtnLink.className = 'post-card-buttons';
+                                    likeBtnLink.id = 'reactions';
+                                    likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
+                                    // Add a boolean variable to track the like state
+                                    let isLiked = false;
+                                    // Add click event listener to the reaction element
+                                    likeBtnLink.addEventListener('click', function () {
+                                        // Toggle between liking and disliking
+                                        if (isLiked) {
+                                            // If already liked, dislike
+                                            post.likes--;
+                                        } else {
+                                            // If not liked, like
+                                            post.likes++;
+                                        }
+                                        // Update the UI
+                                        likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
+                                        // Send a request to update the likes on the server
+                                        sendLikeRequest(post.Handle, post.id);
+                                        // Toggle the like state for the next click
+                                        isLiked = !isLiked;
+                                    });
+                                    function sendLikeRequest(handle, postId) {
+                                        console.log("from sendig req");
+                                        const likeData = {
+                                            "handel": handle,
+                                            "id": postId,
+                                            "like?": 1
+                                        };
+
+
+                                        console.log('Data:', likeData);
+
+                                        console.log('Sending data to https://json.almiraj.xyz/add_like...');
+
+                                        postJSON('https://json.almiraj.xyz/add_like', likeData)
+                                            .then((responseData) => {
+                                                console.log(responseData);
+                                            })
+                                            .catch((error) => {
+                                                console.error(error);
+                                            });
+                                    }
+                                    // Create reactions ul
+                                    var reactionsUl = document.createElement('ul');
+                                    reactionsUl.className = 'reactions-box dropdown-shadow';
+
+                                    // Create reactions li elements
+                                    var reactions = ['Like', 'Love', 'HaHa', 'Wow', 'Sad', 'Angry'];
+
+                                    reactions.forEach(reaction => {
+                                        var reactionLi = document.createElement('li');
+                                        reactionLi.className = `reaction reaction-${reaction.toLowerCase()}`;
+                                        reactionLi.setAttribute('data-reaction', reaction);
+                                        // Add click event listener to the reaction element
+                                        reactionsUl.appendChild(reactionLi);
+                                    });
+                                    // Append elements to the DOM
+                                    likeBtnSpan.appendChild(likeBtnLink);
+                                    likeBtnSpan.appendChild(reactionsUl);
+                                    reactionsDiv.appendChild(likeBtnSpan);
+                                    postElement.appendChild(reactionsDiv);
+                                    // Append the post element to the container
+                                    postsContainer.appendChild(postElement);
+                                });
+                            }
+
+
+                            const postJSON = async (url, jsonData) => {
+                                const response = await fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(jsonData),
+                                });
+
+                                if (!response.ok) throw new Error(response.statusText);
+
+                                const responseData = await response.json();
+                                return responseData;
+                            };
+                        });
+                    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <script src="assets/js/components/components.js"></script>
 
                     <!-- Search script start form here -->
@@ -452,23 +687,82 @@
                                             <!-- Uncomment the following line if you have an image URL in your JSON -->
                                             <!-- <img src="${post.Photo}" class="post-content" alt="post image"> -->
                                         </div>
-                                        <div class="mb-3">
-                                            <!-- Reactions -->
-                                            <div class="argon-reaction">
-                                                <span class="like-btn">
-                                                    <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-2'></i> ${post.likes}</a>
-                                                    <ul class="reactions-box dropdown-shadow">
-                                                        <li class="reaction reaction-like" data-reaction="Like"></li>
-                                                        <li class="reaction reaction-love" data-reaction="Love"></li>
-                                                        <li class="reaction reaction-haha" data-reaction="HaHa"></li>
-                                                        <li class="reaction reaction-wow" data-reaction="Wow"></li>
-                                                        <li class="reaction reaction-sad" data-reaction="Sad"></li>
-                                                        <li class="reaction reaction-angry" data-reaction="Angry"></li>
-                                                    </ul>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    `;
+                                    `
+                                    var reactionsDiv = document.createElement('div');
+                                    reactionsDiv.className = 'mb-3 argon-reaction';
+
+                                    // Create like button span
+                                    var likeBtnSpan = document.createElement('span');
+                                    likeBtnSpan.className = 'like-btn';
+
+                                    // Create like button link
+                                    var likeBtnLink = document.createElement('a');
+                                    likeBtnLink.href = '#';
+                                    likeBtnLink.className = 'post-card-buttons';
+                                    likeBtnLink.id = 'reactions';
+                                    likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
+                                    // Add a boolean variable to track the like state
+                                    let isLiked = false;
+                                    // Add click event listener to the reaction element
+                                    likeBtnLink.addEventListener('click', function () {
+                                        // Toggle between liking and disliking
+                                        if (isLiked) {
+                                            // If already liked, dislike
+                                            post.likes--;
+                                        } else {
+                                            // If not liked, like
+                                            post.likes++;
+                                        }
+                                        // Update the UI
+                                        likeBtnLink.innerHTML = `<i class='bx bxs-like mr-2'></i> ${post.likes}`;
+                                        // Send a request to update the likes on the server
+                                        sendLikeRequest(post.Handle, post.id);
+                                        // Toggle the like state for the next click
+                                        isLiked = !isLiked;
+                                    });
+
+                                    function sendLikeRequest(handle, postId) {
+                                        console.log("from sendig req");
+                                        const likeData = {
+                                            "handel": handle,
+                                            "id": postId,
+                                            "like?": 1
+                                        };
+
+
+                                        console.log('Data:', likeData);
+
+                                        console.log('Sending data to https://json.almiraj.xyz/add_like...');
+
+                                        postJSON('https://json.almiraj.xyz/add_like', likeData)
+                                            .then((responseData) => {
+                                                console.log(responseData);
+                                            })
+                                            .catch((error) => {
+                                                console.error(error);
+                                            });
+                                    }
+                                    // Create reactions ul
+                                    var reactionsUl = document.createElement('ul');
+                                    reactionsUl.className = 'reactions-box dropdown-shadow';
+
+                                    // Create reactions li elements
+                                    var reactions = ['Like', 'Love', 'HaHa', 'Wow', 'Sad', 'Angry'];
+
+                                    reactions.forEach(reaction => {
+                                        var reactionLi = document.createElement('li');
+                                        reactionLi.className = `reaction reaction-${reaction.toLowerCase()}`;
+                                        reactionLi.setAttribute('data-reaction', reaction);
+                                        // Add click event listener to the reaction element
+                                        reactionsUl.appendChild(reactionLi);
+                                    });
+                                    // Append elements to the DOM
+                                    likeBtnSpan.appendChild(likeBtnLink);
+                                    likeBtnSpan.appendChild(reactionsUl);
+                                    reactionsDiv.appendChild(likeBtnSpan);
+                                    postElement.appendChild(reactionsDiv);
+                                    // Append the post element to the container
+                                    postsContainer.appendChild(postElement);;
 
                                     // Append the post element to the container
                                     postsContainer.appendChild(postElement);
@@ -496,6 +790,20 @@
                                 // Redirect to the profile page with the user's profile name
                                 window.location.href = `profile.html?publisher=${encodeURIComponent(userProfile)}`;
                             }
+                            const postJSON = async (url, jsonData) => {
+                                const response = await fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(jsonData),
+                                });
+
+                                if (!response.ok) throw new Error(response.statusText);
+
+                                const responseData = await response.json();
+                                return responseData;
+                            };
                         });
 
                     </script>
