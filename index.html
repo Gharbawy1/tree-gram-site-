@@ -188,9 +188,27 @@
                                 </script>
 
                                 <div class="menu-user-image" style="width: 50px; margin-left:870px;">
-                                    <img src="/assets/images/users/${post.Handle}_pfp.jpg" class="menu-user-img ml-1" height="50px"
-                                        alt="Menu Image" onerror="this.onerror=null; this.src='/assets/images/users/user-8.png';">
+                                    <img src="/assets/images/users/${storedHandle}_pfp.jpg" class="menu-user-img ml-1"
+                                        height="50px" alt="Menu Image"
+                                        onerror="this.onerror=null; this.src='/assets/images/users/user-8.png';">
                                 </div>
+
+                                <script>
+                                    // Retrieve the user's handle from local storage
+                                    const storedHandle1 = localStorage.getItem('handel');
+
+                                    // Get the img element
+                                    const menuUserImage = document.querySelector('.menu-user-img');
+
+                                    // Set the src dynamically with the stored handle
+                                    menuUserImage.src = `/assets/images/users/${storedHandle1}_pfp.jpg`;
+
+                                    // Handle error in case the image doesn't load
+                                    menuUserImage.onerror = function () {
+                                        this.onerror = null; // Remove the error handler to prevent an infinite loop
+                                        this.src = '/assets/images/users/user-8.png'; // Set a default image
+                                    };
+                                </script>
                             </a>
                         </li>
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -228,8 +246,18 @@
                             <div class="media-body">
                                 <div class="form-group post-input">
                                     <textarea class="form-control" id="postForm" rows="2"
-                                        placeholder="What's on your mind, Ahmed ELghrabawy?"></textarea>
+                                        placeholder="What's on your mind, ${storedHandle}"></textarea>
                                 </div>
+                                <script>
+                                    // Retrieve the user's handle from local storage
+                                    const storedHandle = localStorage.getItem('handel');
+
+                                    // Get the textarea element
+                                    const postForm = document.getElementById('postForm');
+
+                                    // Set the placeholder dynamically with the stored handle
+                                    postForm.placeholder = `What's on your mind, ${storedHandle}`;
+                                </script>
                                 <div class="row post-form-group">
                                     <div class="col-md-9">
                                         <button type="button" class="btn btn-link post-form-btn btn-sm">
