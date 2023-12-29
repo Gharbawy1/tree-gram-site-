@@ -1,104 +1,40 @@
 {
-  "Posts": [
+  "activites": [
     {
       "views": 0,
-      "Photo": "NONE",
-      "Content": "BBBBBBBBBB",
-      "likes": 0,
-      "User_Name": "NEWW",
-      "Handle": "B",
-      "Date": 1703767812,
-      "id": 0
-    },
-    {
-      "id": 0,
-      "Date": 1703767812,
-      "Handle": "K",
-      "User_Name": "K",
-      "likes": 0,
-      "Content": "KKKKKKKKKK",
-      "Photo": "NONE",
-      "views": 0
-    },
-    {
-      "views": 0,
-      "Photo": "NONE",
-      "Content": "GGGGGGGGGG",
-      "likes": 0,
-      "User_Name": "G",
-      "Handle": "G",
-      "Date": 1703767812,
-      "id": 0
-    },
-    {
-      "views": 0,
-      "Photo": "NONE",
-      "Content": "JJJJJJJJJJ",
-      "likes": 0,
-      "User_Name": "J",
-      "Handle": "J",
-      "Date": 1703767812,
-      "id": 0
-    },
-    {
-      "id": 0,
-      "Date": 1703767812,
-      "Handle": "GH",
-      "User_Name": "Ahemd",
       "likes": 20,
-      "Content": "Hello",
-      "Photo": "NONE",
-      "views": 0
-    },
-    {
-      "id": 0,
-      "Date": 1703767812,
-      "Handle": "D",
-      "User_Name": "D",
-      "likes": 0,
-      "Content": "DDDDDDDDDD",
-      "Photo": "NONE",
-      "views": 0
-    },
-    {
-      "id": 0,
-      "Date": 1703767812,
-      "Handle": "E",
-      "User_Name": "E",
-      "likes": 0,
-      "Content": "EEEEEEEEEE",
-      "Photo": "NONE",
-      "views": 0
-    },
-    {
-      "id": 0,
-      "Date": 1703767812,
-      "Handle": "F",
-      "User_Name": "F",
-      "likes": 0,
-      "Content": "FFFFFFFFFF",
-      "Photo": "NONE",
-      "views": 0
-    },
-    {
-      "views": 0,
       "Photo": "NONE",
       "Content": "Hello",
-      "likes": 20,
-      "User_Name": "Ezz",
-      "Handle": "EZZ",
-      "Date": 1703767812,
+      "Date": 1703823158,
       "id": 0
     },
     {
-      "views": 0,
+      "id": 1,
+      "Date": 1703823158,
+      "Content": "Hello EZZ",
       "Photo": "NONE",
-      "Content": "HHHHHHHHHH",
       "likes": 0,
-      "User_Name": "H",
-      "Handle": "H",
-      "Date": 1703767812,
-      "id": 0
+      "views": 0
+    },
+    {
+      "views": 0,
+      "likes": 29,
+      "Photo": "NONE",
+      "Content": "Hello2",
+      "Date": 1703823158,
+      "id": 2
+    },
+    {
+      "views": 0,
+      "likes": 0,
+      "Photo": "NONE",
+      "Content": "Hello3",
+      "Date": 1703823158,
+      "id": 3
     }
-  ]
+  ],
+  "age": 5,
+  "handel": "GH",
+  "phone": "1",
+  "name": "Ahemd"
 }

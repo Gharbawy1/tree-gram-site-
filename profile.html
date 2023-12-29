@@ -145,7 +145,7 @@
                                                         </div>
                                                         <div class="col-md-3 text-right">
                                                             <button type="button"
-                                                                class="btn btn-primary btn-sm">Publish</button>
+                                                                class="btn btn-primary Publishbtn">Publish</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -358,8 +358,42 @@
 
 
 
-    <!-- For Update the user Information -->
+    <!-- For Add Post -->
+    <script>
+        const postJSON = async (url, jsonData) => {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData),
+            });
 
+            if (!response.ok) throw new Error(response.statusText);
+
+            const responseData = await response.json();
+            return responseData;
+        };
+        const PuplishBtn = document.querySelector('.Publishbtn');
+        PuplishBtn.addEventListener('click', function () {
+            const content = document.querySelector('[placeholder="What\'s on your mind?"]').value.trim();
+            
+            const postData = {
+                // Initial data properties...
+                "handel": , //current profile i want to publish the post
+                "content":"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
+              };
+
+        });
+        
+
+
+
+
+
+
+
+    </script>
 
 
 

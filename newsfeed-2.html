@@ -28,7 +28,10 @@
                 <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
                     <ul class="navbar-nav mr-5" id="main_menu">
                         <a class="navbar-brand nav-item mr-lg-5" href="sign-in.html"><img src="assets/images/loogo.png"
-                                width="40" height="40" class="mr-3" alt="Logo"></a>
+                                width="40" height="45" class="mr-3" alt="Logo">
+                            <p style="margin-top: 13px ;">Tr<span style="color: rgb(101, 173, 30);">E</span>eGr<span
+                                    style="color: rgb(101, 173, 30);">AM</span></p>
+                        </a>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <form class="w-30 mx-2 my-auto d-inline form-inline mr-5">
                             <div class="input-group">
@@ -43,8 +46,8 @@
                                                 class='bx bx-search'></i></button>
                                     </div>
                                      -->
-                                <button type="button" class="btn btn-primary btn-sm"
-                                    onclick="searchUsers()">Search</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="searchUsers()"
+                                    style="background-color: #a77a28;border-style:none; height:40px; margin-top: 1px;">Search</button>
 
 
 
@@ -78,7 +81,8 @@
 
 
                                     <div class="col-md-3 text-right">
-                                        <button type="button" class="btn btn-primary btn-sm">Publish</button>
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                            style="background-color: #a77a28; border-style:none;height:35px;width:60px;">Publish</button>
                                     </div>
                                 </div>
                             </div>
@@ -242,47 +246,6 @@
 
 
                     <script src="assets/js/components/components.js"></script>
-                    <!-- <script type="text/javascript">
-                        // Chart.js
-
-                        //  var likesChart = document.getElementById('likesChart').getContext('2d');
-                        var chart = new Chart(likesChart, {
-                            // The type of chart we want to create
-                            type: 'line',
-
-                            // The data for our dataset
-                            data: {
-                                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                                datasets: [{
-                                    label: 'Likes chart',
-                                    backgroundColor: 'rgb(0, 123, 255)',
-                                    borderColor: 'rgb(0, 123, 255)',
-                                    data: [0, 10, 5, 2, 20, 30, 45]
-                                }]
-                            },
-
-                            // Configuration options go here
-                            options: {}
-                        });
-
-                        var followersChart = document.getElementById('followersChart').getContext('2d');
-                        var myPieChart = new Chart(followersChart, {
-                            type: 'pie',
-                            data: {
-                                labels: [
-                                    'Followers',
-                                    'Following'
-                                ],
-                                datasets: [{
-                                    backgroundColor: ['rgb(0, 123, 255)', 'rgb(50,205,50)'],
-                                    data: [32, 17]
-                                }]
-                            },
-                            // Configuration options go here
-                            options: {}
-                        });
-
-                    </script> -->
 
                     <!-- Search script start form here -->
                     <script>
@@ -384,64 +347,6 @@
 
 
                     <!-- Increase the like -->
-                    <script>
-                        const postJSON = async (url, jsonData) => {
-                            const response = await fetch(url, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(jsonData),
-                            });
-
-                            if (!response.ok) throw new Error(response.statusText);
-
-                            const responseData = await response.json();
-                            return responseData;
-                        };
-
-                        const postData = {
-                            // Initial data properties...
-                            "handel": "GH",
-                            "id": 0,
-                            "like": true
-                        };
-
-                        /* => For add p
-                        console.log('Data:', postData);
-
-                        console.log('Sending data to http://0.0.0.0:18080/add_like...');
-
-                        postJSON('http://0.0.0.0:18080/add_like', postData)
-                            .then((responseData) => {
-                                console.log(responseData);
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
-*/
-                        const userData = {
-                            // Initial data properties...
-                            // x["name"].s(),x["phone"].s(),x["handel"].s(),x["age"].i()
-                            "name": "ahemd",
-                            "phone": "010101",
-                            "handel": "gh",
-                            "age": 9
-                        };
-
-
-                        console.log('Data:', userData);
-
-                        console.log('Sending data to https://json.almiraj.xyz/add_user...');
-
-                        postJSON('https://json.almiraj.xyz/add_user', userData)
-                            .then((responseData) => {
-                                console.log(responseData);
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
-                    </script>
 
 
 
