@@ -1,86 +1,104 @@
 {
-  "posts": {
-    "post": [
-      {
-        "id": 1,
-        "Profile": "John Michael",
-        "Content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis voluptatem veritatis harum, tenetur, quibusdam voluptatum, incidunt saepe minus maiores ea atque sequi illo veniam sint quaerat corporis totam et. Culpa?",
-        "photo": "https://jsonformatter.org/img/tom-cruise.jpg",
-        "likes": 67,
-        "views": 100
-      },
-      {
-        "id": 2,
-        "Profile": "Arthur Minasyan",
-        "Content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis voluptatem veritatis harum, tenetur, quibusdam voluptatum, incidunt saepe minus maiores ea atque sequi illo veniam sint quaerat corporis totam et. Culpa?",
-        "photo": "assets/images/users/user-1.jpg",
-        "likes": 7,
-        "views": 10
-      },
-      {
-        "id": 3,
-        "Profile": "garabawy",
-        "Content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis voluptatem veritatis harum, tenetur, quibusdam voluptatum, incidunt saepe minus maiores ea atque sequi illo veniam sint quaerat corporis totam et. Culpa?",
-        "photo": "assets/images/users/user-2.jpg",
-        "likes": 70,
-        "views": 79
-      },
-      {
-        "id": 4,
-        "Profile": "garabawy",
-        "Content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis voluptatem veritatis harum, tenetur, quibusdam voluptatum, incidunt saepe minus maiores ea atque sequi illo veniam sint quaerat corporis totam et. Culpa?",
-        "photo": "assets/images/users/user-3.jpg",
-        "likes": 70,
-        "views": 79
-      },
-      {
-        "id": 5,
-        "Profile": "garabawy",
-        "Content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis voluptatem veritatis harum, tenetur, quibusdam voluptatum, incidunt saepe minus maiores ea atque sequi illo veniam sint quaerat corporis totam et. Culpa?",
-        "photo": "assets/images/users/user-4.jpg",
-        "likes": 70,
-        "views": 79
-      },
-      {
-        "id": 6,
-        "Profile": "ezz",
-        "Content": " love dr mahmoud ",
-        "photo": "assets/images/users/user-12.png",
-        "likes": 70,
-        "views": 79
-      },
-      {
-        "id": 7,
-        "Profile": "Mohamed Elsayed",
-        "Content": "بحبك",
-        "photo": "assets/images/users/user-8.png",
-        "likes": 90,
-        "views": 79
-      },
-      {
-        "id": 7,
-        "Profile": "Mohamed Elsayed",
-        "Content": "بحبك",
-        "photo": "assets/images/users/user-8.png",
-        "likes": 90,
-        "views": 79
-      },
-      {
-        "id": 7,
-        "Profile": "Mohamed Elsayed",
-        "Content": "بحبك",
-        "photo": "assets/images/users/user-8.png",
-        "likes": 90,
-        "views": 79
-      },
-      {
-        "id": 7,
-        "Profile": "Mohamed Elsayed",
-        "Content": "بحبك",
-        "photo": "assets/images/users/user-8.png",
-        "likes": 90,
-        "views": 79
-      }
-    ]
-  }
+  "Posts": [
+    {
+      "views": 0,
+      "Photo": "NONE",
+      "Content": "BBBBBBBBBB",
+      "likes": 0,
+      "User_Name": "NEWW",
+      "Handle": "B",
+      "Date": 1703767812,
+      "id": 0
+    },
+    {
+      "id": 0,
+      "Date": 1703767812,
+      "Handle": "K",
+      "User_Name": "K",
+      "likes": 0,
+      "Content": "KKKKKKKKKK",
+      "Photo": "NONE",
+      "views": 0
+    },
+    {
+      "views": 0,
+      "Photo": "NONE",
+      "Content": "GGGGGGGGGG",
+      "likes": 0,
+      "User_Name": "G",
+      "Handle": "G",
+      "Date": 1703767812,
+      "id": 0
+    },
+    {
+      "views": 0,
+      "Photo": "NONE",
+      "Content": "JJJJJJJJJJ",
+      "likes": 0,
+      "User_Name": "J",
+      "Handle": "J",
+      "Date": 1703767812,
+      "id": 0
+    },
+    {
+      "id": 0,
+      "Date": 1703767812,
+      "Handle": "GH",
+      "User_Name": "Ahemd",
+      "likes": 20,
+      "Content": "Hello",
+      "Photo": "NONE",
+      "views": 0
+    },
+    {
+      "id": 0,
+      "Date": 1703767812,
+      "Handle": "D",
+      "User_Name": "D",
+      "likes": 0,
+      "Content": "DDDDDDDDDD",
+      "Photo": "NONE",
+      "views": 0
+    },
+    {
+      "id": 0,
+      "Date": 1703767812,
+      "Handle": "E",
+      "User_Name": "E",
+      "likes": 0,
+      "Content": "EEEEEEEEEE",
+      "Photo": "NONE",
+      "views": 0
+    },
+    {
+      "id": 0,
+      "Date": 1703767812,
+      "Handle": "F",
+      "User_Name": "F",
+      "likes": 0,
+      "Content": "FFFFFFFFFF",
+      "Photo": "NONE",
+      "views": 0
+    },
+    {
+      "views": 0,
+      "Photo": "NONE",
+      "Content": "Hello",
+      "likes": 20,
+      "User_Name": "Ezz",
+      "Handle": "EZZ",
+      "Date": 1703767812,
+      "id": 0
+    },
+    {
+      "views": 0,
+      "Photo": "NONE",
+      "Content": "HHHHHHHHHH",
+      "likes": 0,
+      "User_Name": "H",
+      "Handle": "H",
+      "Date": 1703767812,
+      "id": 0
+    }
+  ]
 }

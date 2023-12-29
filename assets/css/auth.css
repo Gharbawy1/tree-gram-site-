@@ -14,8 +14,9 @@
 }
 
 .auth-bg-image {
-    background: url(../images/background/auth-bg.png) no-repeat;
-    background-size: cover;
+    background: url(../images/Sign-in-logo-left-side.jpg) no-repeat;
+    background-size:650px;
+    
 }
 
 .auth-left-content,
@@ -89,6 +90,7 @@
 
 .fingerprint-modal .modal-body {
     padding: 5rem 4rem;
+    
 }
 
 .fingerprint-modal .modal-body img {
