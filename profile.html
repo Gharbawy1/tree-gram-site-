@@ -377,15 +377,25 @@
         const PuplishBtn = document.querySelector('.Publishbtn');
         PuplishBtn.addEventListener('click', function () {
             const content = document.querySelector('[placeholder="What\'s on your mind?"]').value.trim();
-            
+
+            console.log(localStorage.getItem('handel'));
+
             const postData = {
                 // Initial data properties...
-                "handel": , //current profile i want to publish the post
-                "content":"Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
-              };
+                "handel": localStorage.getItem('handel'), //current profile i want to publish the post
+                "content": content
+
+            };
+            postJSON('https://json.almiraj.xyz/add_post', postData)
+                .then((responseData) => {
+                    console.log(responseData);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
 
         });
-        
+
 
 
 
