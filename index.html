@@ -27,12 +27,19 @@
             <div class="col-md-12 newsfeed-right-side">
                 <nav id="navbar-main" class="navbar navbar-expand-lg shadow-sm sticky-top">
                     <ul class="navbar-nav mr-5" id="main_menu">
-                        <a class="navbar-brand nav-item mr-lg-5" href="sign-in.html"><img
+                        <a onclick="redirectToSignIn()" class="navbar-brand nav-item mr-lg-5" href="sign-in.html"><img
                                 src="assets/images/logo-512x512.png" width="40" height="45" class="mr-3" alt="Logo">
                             <b>
                                 <p style="margin-top: 13px ;">Tr<span style="color: rgb(101, 173, 30);">E</span>eGr<span
                                         style="color: rgb(101, 173, 30);">AM</span></p>
                             </b>
+                            <script>
+                                function redirectToSignIn() {
+                                    // Redirect to the sign-in page
+                                    // Clear the localStorage
+                                    localStorage.clear();
+                                }
+                            </script>
                         </a>
 
                         <li class="nav-item s-nav">
@@ -228,18 +235,19 @@
                                      -->
                                 <button type="button" class="btn btn-primary btn-sm" onclick="searchUsers()"
                                     style="background-color: #a77a28;border-style:none; height:40px; margin-top: 1px;">Search</button>
-
-
-
                             </div>
                         </form>
                     </ul>
                 </nav>
 
 
+
+
+
+
                 <!-- HERE GH Delete the right nav bar -->
                 <div class="col-md-6 second-section" id="page-content-wrapper" style="margin: auto;padding-top: 10px;">
-                    <ul class="list-unstyled" style="margin-bottom: 0;">
+                    <ul class="list-unstyled" id="publishfeedpagesection" style="margin-bottom: 0;">
                         <li class="media post-form w-shadow">
                             <div class="media-body">
                                 <div class="form-group post-input">
@@ -249,13 +257,20 @@
                                 <script>
                                     // Retrieve the user's handle from local storage
                                     const storedHandle = localStorage.getItem('handel');
-
+                                    const hideele = document.getElementById('publishfeedpagesection');
                                     // Get the textarea element
                                     const postForm = document.getElementById('postForm');
-
+                                    if (storedHandle) {
+                                        postForm.placeholder = `What's on your mind, ${storedHandle}`;
+                                    }
+                                    else {
+                                        hideele.style.display = 'none';
+                                    }
                                     // Set the placeholder dynamically with the stored handle
-                                    postForm.placeholder = `What's on your mind, ${storedHandle}`;
                                 </script>
+
+
+
                                 <div class="row post-form-group">
                                     <div class="col-md-9">
                                         <button type="button" class="btn btn-link post-form-btn btn-sm">
@@ -272,13 +287,61 @@
 
 
                                     <div class="col-md-3 text-right">
-                                        <button type="button" class="btn btn-primary btn-sm"
+                                        <button type="button" class="btn btn-primary btn-sm" id="Publishbtn1"
                                             style="background-color: #a77a28; border-style:none;height:35px;width:60px;">Publish</button>
                                     </div>
+                                    <script>
+                                        const postJSON = async (url, jsonData) => {
+                                            const response = await fetch(url, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                },
+                                                body: JSON.stringify(jsonData),
+                                            });
+
+                                            if (!response.ok) throw new Error(response.statusText);
+
+                                            const responseData = await response.json();
+                                            return responseData;
+                                        };
+                                        const PuplishBtn1 = document.getElementById('Publishbtn1');
+                                        PuplishBtn1.addEventListener('click', function () {
+                                            const content = document.querySelector(`[placeholder="What\'s on your mind, ${storedHandle}"]`).value.trim();
+                                            const postData = {
+                                                // Initial data properties...
+                                                "handel": localStorage.getItem('handel'), //current profile i want to publish the post
+                                                "content": content
+
+                                            };
+                                            postJSON('https://json.almiraj.xyz/add_post', postData)
+                                                .then((responseData) => {
+                                                    console.log(responseData);
+                                                })
+                                                .catch((error) => {
+                                                    console.error(error);
+                                                });
+
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </li>
                     </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <!-- Posts Sections Start From here -->
                     <div class="posts-section mb-5">
